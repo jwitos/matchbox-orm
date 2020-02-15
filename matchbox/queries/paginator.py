@@ -15,15 +15,13 @@ class Paginator:
         return self
 
     def __next__(self):
-        if not self._res:
-            self.make_query()
-            return self.wrap_response()
-
         self.make_query(self.last_doc)
         return self.wrap_response()
 
     @property
     def last_doc(self):
+        if not self._res:
+            return
         return self._res[-1]
 
     def make_query(self, start_after=None):
