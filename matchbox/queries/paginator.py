@@ -25,8 +25,11 @@ class Paginator:
         return self._res[-1]
 
     def make_query(self, start_after=None):
+        print("Making query. Start after: {}".format(start_after))
+
         if start_after is not None:
             self.query.start_after(start_after)
+
         self._res = list(self.query.raw_execute())
         if not self._res:
             raise StopIteration
